@@ -15,7 +15,13 @@ keyboard.o: keyboard.c keyboard.h
 inb_outb.o: inb_outb.h
 	i686-elf-gcc -c inb_outb.h -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 
-create: boot.o terminal.o kernel.o keyboard.o inb_outb.o
+gdts.o: gdt.s
+	i686-elf-as gdt.s -o gdts.o
+
+gdt.o: gdt.h gdt.c
+	i686-elf-gcc -c gdt.c -std=gnu99 -ffreestanding -O2 -Wall -Wextra
+
+create: boot.o terminal.o kernel.o keyboard.o inb_outb.o gdts.o gdt.o
 	i686-elf-gcc -T linker.ld -o os.bin -ffreestanding -O2 -nostdlib *.o -lgcc
 	grub2-file --is-x86-multiboot os.bin
 	\cp -f os.bin isodir/boot/os.bin

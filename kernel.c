@@ -2,6 +2,7 @@
 
 void kernel_main(void) {
     terminal_init();
+    gdt_init();
     keyboard_init();
     terminal_writestring("Howdy? toasa!\n");
     keyboard_input_int();

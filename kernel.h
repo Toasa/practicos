@@ -7,6 +7,7 @@
 #include "terminal.h"
 #include "keyboard.h"
 #include "inb_outb.h"
+#include "gdt.h"
 
 size_t strlen(const uint8_t*);
 
