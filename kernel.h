@@ -5,6 +5,8 @@
 #include <stdint.h>
 
 #include "terminal.h"
+#include "keyboard.h"
+#include "inb_outb.h"
 
 size_t strlen(const uint8_t*);
 

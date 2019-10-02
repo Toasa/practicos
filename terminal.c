@@ -52,6 +52,17 @@ void terminal_putchar(uint8_t c) {
             terminal_uponerow();
         }
         return;
+    } else if (c == '\b') {
+        if (t_col == 0) {
+            t_row--;
+            t_col = VGA_WIDTH - 1;
+        } else {
+            t_col--;
+        }
+        terminal_putentryat(' ', t_color, t_col, t_row);
+        return;
+    } else if (c == '\t') {
+        t_col += 4;
     }
 
     terminal_putentryat(c, t_color, t_col, t_row);
