@@ -8,12 +8,12 @@ void gdt_init() {
     gdt.base = (uint32_t)gdt_entries;
 
     for (int i = 0; i < GDT_LEN; i++) {
-        set_segment_sesc(i, 0, 0, 0, 0);
+        set_segment_desc(i, 0, 0, 0, 0);
     }
-    set_segment_sesc(1, 0, 0xffffffff, 0x9A, 0xCF);
-    set_segment_sesc(2, 0, 0xffffffff, 0x92, 0xCF);
-    set_segment_sesc(3, 0, 0xffffffff, 0xFA, 0xCF);
-    set_segment_sesc(4, 0, 0xffffffff, 0xF2, 0xCF);
+    set_segment_desc(1, 0, 0xffffffff, 0x9A, 0xCF);
+    set_segment_desc(2, 0, 0xffffffff, 0x92, 0xCF);
+    set_segment_desc(3, 0, 0xffffffff, 0xFA, 0xCF);
+    set_segment_desc(4, 0, 0xffffffff, 0xF2, 0xCF);
 
     load_gdtr((uint32_t)(&gdt));
 
@@ -26,7 +26,7 @@ void gdt_init() {
 //        セグメントの属性にgranビットというフラグがあり
 //        フラグを立てるとlimitをバイト単位ではなく、
 //        ページ単位(4KB)と解釈してくれる
-void set_segment_sesc(uint32_t index, uint32_t base, uint32_t limit, uint8_t access_right, uint8_t gran) {
+void set_segment_desc(uint32_t index, uint32_t base, uint32_t limit, uint8_t access_right, uint8_t gran) {
     gdt_desc *sg = &gdt_entries[index];
 
     sg->limit_high = (gran & 0xF0) | ((limit >> 16) & 0x0F);

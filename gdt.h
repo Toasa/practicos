@@ -27,10 +27,10 @@ typedef struct {
 }__attribute__((packed)) gdt_desc;
 
 typedef struct {
-    // セグメントの大きさ
+    // GDTの大きさ
     uint16_t size;
 
-    // セグメントの開始番地
+    // GDTの開始番地
     uint32_t base; 
 }__attribute__((packed)) gdtr;
 
@@ -38,6 +38,6 @@ typedef struct {
 gdt_desc gdt_entries[GDT_LEN];
 
 void gdt_init();
-void set_segment_sesc(uint32_t, uint32_t, uint32_t, uint8_t, uint8_t);
+void set_segment_desc(uint32_t, uint32_t, uint32_t, uint8_t, uint8_t);
 
 #endif

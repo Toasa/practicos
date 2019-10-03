@@ -8,6 +8,8 @@
 #include "keyboard.h"
 #include "inb_outb.h"
 #include "gdt.h"
+#include "pic.h"
+#include "idt.h"
 
 size_t strlen(const uint8_t*);
 
