@@ -30,7 +30,13 @@ idt.o: idt.h idt.c
 pic.o: pic.h pic.c
 	i686-elf-gcc -c pic.c -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 
-create: boot.o terminal.o kernel.o keyboard.o inb_outb.o gdts.o gdt.o idts.o idt.o pic.o
+interruptas.o: interrupt.s
+	i686-elf-as interrupt.s -o interruptas.o
+
+interrupt.o: interrupt.c interrupt.h
+	i686-elf-gcc -c interrupt.c -std=gnu99 -ffreestanding -O2 -Wall -Wextra
+
+create: boot.o terminal.o kernel.o keyboard.o inb_outb.o gdts.o gdt.o idts.o idt.o pic.o interruptas.o interrupt.o
 	i686-elf-gcc -T linker.ld -o os.bin -ffreestanding -O2 -nostdlib *.o -lgcc
 	grub2-file --is-x86-multiboot os.bin
 	\cp -f os.bin isodir/boot/os.bin

@@ -18,8 +18,9 @@ void pic_init(void) {
                                 // 割り込みベクタ番号の0x28 - 0x2fで受け付ける
     outb(PIC1_ICW3_PORT, 0x02); // IRQ2にスレーブPICからの割り込みを処理させる
     outb(PIC1_ICW4_PORT, 0x01); // ノンバッファモード
-
-    outb(PIC0_IMR_PORT, 0xFB);  // 11111011
+                                
+    outb(PIC0_IMR_PORT, 0xF9);  // 11111001
+                                // IRQ1(キーボードコントローラ割り込み)と
                                 // IRQ2(スレーブPICからの割り込み)のみ許可する
     outb(PIC1_IMR_PORT, 0xEF);  // 11101111
                                 // IRQ12(PS/2マウスからの割り込み)のみ許可する

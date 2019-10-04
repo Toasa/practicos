@@ -3,12 +3,15 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include "interrupt.h"
 
 #ifdef __cplusplus
 extern "C" void load_idtr(uint32_t);
 #else
 extern void load_idtr(uint32_t);
 #endif
+
+extern as_keyboard_interrupt(void);
 
 // IDTの中身
 typedef struct {

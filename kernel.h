@@ -10,6 +10,9 @@
 #include "gdt.h"
 #include "pic.h"
 #include "idt.h"
+#include "interrupt.h"
+
+uint8_t *c[2];
 
 size_t strlen(const uint8_t*);
 

@@ -30,6 +30,9 @@
 #define PIC0_OCW2_PORT 0x20
 #define PIC1_OCW2_PORT 0xA0
 
+// End of interrupt
+#define PIC_EOI        0x20
+
 void pic_init(void);
 
 #endif
