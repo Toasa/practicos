@@ -67,21 +67,21 @@ uint8_t getscode(void) {
     uint8_t c = 0;
 
     // こっちではキーが余分に重複して認識される
-    // while (1) {
-    //     c = inb(KEYBOARD_PORT1);
-    //     if (c > 0) {
-    //         return c;
-    //     }
-    // }
-
-    do {
-        if (inb(KEYBOARD_PORT1) != c) {
-            c = inb(KEYBOARD_PORT1);
-            if (c > 0) {
-                return c;
-            }
+    while (1) {
+        c = inb(KEYBOARD_PORT1);
+        if (c > 0) {
+            return c;
         }
-    } while (1);
+    }
+
+    // do {
+    //     if (inb(KEYBOARD_PORT1) != c) {
+    //         c = inb(KEYBOARD_PORT1);
+    //         if (c > 0) {
+    //             return c;
+    //         }
+    //     }
+    // } while (1);
 }
 
 uint8_t getchar(void) {
