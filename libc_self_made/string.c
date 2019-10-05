@@ -39,13 +39,13 @@ char *sm_strcat(char *dst, const char *src) {
 
 int sm_strcmp(const char *s1, const char *s2) {
     int diff;
-    while (s1 && s2) {
-        diff = s1 - s2;
+    while (*s1 && *s2) {
+        diff = *s1 - *s2;
         if (diff != 0) {
             return diff;
         }
         s1++;
         s2++;
     }
-    return s1 - s2;
+    return *s1 - *s2;
 }
