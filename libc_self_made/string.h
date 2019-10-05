@@ -8,5 +8,6 @@ size_t sm_strlen(const uint8_t *);
 void sm_strrev(unsigned char *);
 char *sm_strcpy(char *, const char *);
 char *sm_strcat(char *, const char *);
+int sm_strcmp(const char *, const char *);
 
 #endif
