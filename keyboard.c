@@ -4,6 +4,7 @@
 key_buf kb;
 
 void keyboard_init(void) {
+    // PS/2 keyboardの初期化のため、コメントアウト
     // change_trate_delay(TYPEMATICDELAY_SET2);
     if (enable_keyboard() == 0xFA) {
         terminal_writestring("Keyboard enable... OK\n");
@@ -14,6 +15,7 @@ void keyboard_init(void) {
 }
 
 uint8_t ps2_keyboard_init(void) {
+    // PS/2 keyboardの初期化のため、コメントアウト
     // change_codeset(SCAN_CODE_SET2);
     uint8_t scodeset = getscodeset();
     if (scodeset == 0x43) {
