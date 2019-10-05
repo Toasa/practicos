@@ -16,4 +16,6 @@
 #include "libc_self_made/stdio.h"
 #include "libc_self_made/string.h"
 
-uint8_t *c[2];
+bool input_line(char *, char *);
+void prompt(void);
+int execute(char *);

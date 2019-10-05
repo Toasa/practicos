@@ -1,6 +1,8 @@
 #include "terminal.h"
 #include "vga.h"
 
+extern size_t prompt_len;
+
 void terminal_init(void) {
     t_row = 0;
     t_col = 0;
@@ -53,13 +55,13 @@ void terminal_putchar(uint8_t c) {
         }
         return;
     } else if (c == '\b') {
-        if (t_col == 0) {
-            t_row--;
-            t_col = VGA_WIDTH - 1;
-        } else {
+        terminal_putentryat(' ', t_color, t_col - 1, t_row);
+        if (t_col > prompt_len + 2) {
             t_col--;
+            if (t_col <= prompt_len) {
+                t_col = prompt_len;
+            }
         }
-        terminal_putentryat(' ', t_color, t_col, t_row);
         return;
     } else if (c == '\t') {
         t_col += 4;

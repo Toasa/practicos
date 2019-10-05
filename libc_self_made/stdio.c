@@ -18,8 +18,9 @@ int sm_vprintf(const unsigned char *format, va_list parameter) {
                 char *str = va_arg(parameter, char *);
                 terminal_writestring(str);
             } else if (*format == 'c') {
-                char c = va_arg(parameter, char);
-                terminal_putchar(c);
+                // bugあり
+                char chara = va_arg(parameter, char);
+                terminal_putchar(chara);
             } else if (*format == 'd') {
                 int n = va_arg(parameter, size_t);
                 terminal_writenum(n, 'd');
