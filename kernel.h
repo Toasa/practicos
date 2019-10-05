@@ -16,6 +16,6 @@ uint8_t *c[2];
 
 size_t strlen(const uint8_t*);
 
-#if defined(__cplusplus)
-us_keytableextern "C"
-#endif
+// #if defined(__cplusplus)
+// us_keytableextern "C"
+// #endif
