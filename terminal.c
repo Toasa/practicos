@@ -112,5 +112,5 @@ void terminal_writenum(int n, char base) {
 }
 
 void terminal_writestring(const uint8_t *str) {
-    terminal_write(str, strlen(str));
+    terminal_write(str, sm_strlen(str));
 }

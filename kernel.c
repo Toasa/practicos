@@ -2,17 +2,24 @@
 
 extern key_buf kb;
 
-void kernel_main(void) {
+void kernel_main(multiboot_info_t *mbt, uint32_t magic) {
     terminal_init();
     gdt_init();
     idt_init();
     pic_init();
     keyboard_init();
+
+    getmmap(mbt);
+
     terminal_writestring("Howdy? toasa!\n");
 
     sm_printf("I'm %d years old.\n", 1024);
     sm_printf("Lisa is %x years old.\n", 2035);
 
+    char *portal = "This was a triumph";
+    sm_strrev(portal);
+    sm_printf("%s\n", portal);
+    
     keyboard_input_accept();
 }
 
@@ -35,12 +42,4 @@ void keyboard_input_accept() {
             terminal_writestring(c);
         }
     }
-}
-
-size_t strlen(const uint8_t *str) {
-    size_t len = 0;
-    while (str[len]) {
-        len++;
-    }
-    return len;
 }

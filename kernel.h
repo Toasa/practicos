@@ -11,12 +11,9 @@
 #include "pic.h"
 #include "idt.h"
 #include "interrupt.h"
+#include "multiboot.h"
+#include "getmmap.h"
 #include "libc_self_made/stdio.h"
+#include "libc_self_made/string.h"
 
 uint8_t *c[2];
-
-size_t strlen(const uint8_t*);
-
-// #if defined(__cplusplus)
-// us_keytableextern "C"
-// #endif
