@@ -171,9 +171,9 @@ void input_bufdata(uint8_t scan_code) {
         } else if (ks.shift_enable && ks.caps_lock) {
             numpad_data = key->base[scan_code];
             if ('a' <= numpad_data && numpad_data <= 'z') {
-                kb.pdata[kb.write++] = key->base[scan_code];
-            } else {
                 kb.pdata[kb.write++] = key->shift[scan_code];
+            } else {
+                kb.pdata[kb.write++] = key->base[scan_code];
             }
         } else {
             kb.pdata[kb.write++] = key->base[scan_code];
