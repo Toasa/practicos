@@ -36,7 +36,10 @@ interruptas.o: interrupt.s
 interrupt.o: interrupt.c interrupt.h
 	i686-elf-gcc -c interrupt.c -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 
-create: boot.o terminal.o kernel.o keyboard.o inb_outb.o gdts.o gdt.o idts.o idt.o pic.o interruptas.o interrupt.o
+keymap.o: keymap.c keyboard.h
+	i686-elf-gcc -c keymap.c -std=gnu99 -ffreestanding -O2 -Wall -Wextra
+
+create: boot.o terminal.o kernel.o keyboard.o inb_outb.o gdts.o gdt.o idts.o idt.o pic.o interruptas.o interrupt.o keymap.o
 	i686-elf-gcc -T linker.ld -o os.bin -ffreestanding -O2 -nostdlib *.o -lgcc
 	grub2-file --is-x86-multiboot os.bin
 	\cp -f os.bin isodir/boot/os.bin
