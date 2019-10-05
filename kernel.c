@@ -9,7 +9,10 @@ void kernel_main(void) {
     pic_init();
     keyboard_init();
     terminal_writestring("Howdy? toasa!\n");
+    keyboard_input_accept();
+}
 
+void keyboard_input_accept() {
     kb.len = 0;
     kb.write = 0;
     kb.read = 0;
