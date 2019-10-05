@@ -11,6 +11,7 @@ void kernel_main(void) {
     terminal_writestring("Howdy? toasa!\n");
 
     sm_printf("I'm %d years old.\n", 1024);
+    sm_printf("Lisa is %x years old.\n", 2035);
 
     keyboard_input_accept();
 }

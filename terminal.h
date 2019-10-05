@@ -18,7 +18,7 @@ void terminal_putchar(uint8_t);
 void terminal_write(const uint8_t *, size_t);
 void terminal_writestring(const uint8_t *);
 void terminal_uponerow(void);
-void terminal_writedecimal(int);
+void terminal_writedecimal(int, int);
 void terminal_writenum(int , char);
 
 #endif

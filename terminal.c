@@ -76,26 +76,38 @@ void terminal_putchar(uint8_t c) {
     }
 }
 
+void terminal_putnum(int n, int base) {
+    if (base == 10) {
+        terminal_putchar(n + '0');
+    } else if (base == 16) {
+        if (n < 10) {
+            terminal_putchar(n + '0');
+        } else {
+            terminal_putchar(n - 10 + 'A');
+        }
+    }
+}
+
 void terminal_write(const uint8_t *str, size_t len) {
     for (int i = 0; i < len; i++) {
         terminal_putchar(str[i]);
     }
 }
 
-void terminal_writedecimal(int n) {
-    if (n > 9) {
-        terminal_writedecimal(n / 10);
-        terminal_putchar(n % 10 + '0');
+void terminal_writenum_rec(int n, int base) {
+    if (n > base - 1) {
+        terminal_writenum_rec(n / base, base);
+        terminal_putnum(n % base, base);
     } else {
-        terminal_putchar(n + '0');
+        terminal_putnum(n, base);
     }
 }
 
 void terminal_writenum(int n, char base) {
     if (base == 'd') {
-        terminal_writedecimal(n);
+        terminal_writenum_rec(n, 10);
     } else if (base == 'x') {
-
+        terminal_writenum_rec(n, 16);
     }
 }
 
