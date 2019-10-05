@@ -9,6 +9,9 @@ void kernel_main(void) {
     pic_init();
     keyboard_init();
     terminal_writestring("Howdy? toasa!\n");
+
+    sm_printf("I'm %d years old.\n", 1024);
+
     keyboard_input_accept();
 }
 

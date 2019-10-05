@@ -1,7 +1,7 @@
 all: create
 
 OBJ = terminal.o kernel.o keyboard.o inb_outb.o gdt.o \
-      idt.o pic.o interrupt.o keymap.o
+      idt.o pic.o interrupt.o keymap.o stdio.o
 OBJAS = boot.o gdts.o idts.o interruptas.o
 CC = i686-elf-gcc
 CCAS = i686-elf-as
@@ -45,6 +45,9 @@ interrupt.o: interrupt.c interrupt.h
 
 keymap.o: keymap.c keyboard.h
 	$(CC) -c $< -std=gnu99 $(CFLAGS) -Wextra
+
+stdio.o: libc_self_made/stdio.c libc_self_made/stdio.h
+	$(CC) -c $^ -std=gnu99 $(CFLAGS) -Wextra
 
 create: $(OBJAS) $(OBJ)
 	$(CC) -T linker.ld -o os.bin $(CFLAGS) -nostdlib *.o -lgcc

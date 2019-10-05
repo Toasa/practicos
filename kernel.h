@@ -11,6 +11,7 @@
 #include "pic.h"
 #include "idt.h"
 #include "interrupt.h"
+#include "libc_self_made/stdio.h"
 
 uint8_t *c[2];
 

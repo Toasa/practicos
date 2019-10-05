@@ -82,6 +82,23 @@ void terminal_write(const uint8_t *str, size_t len) {
     }
 }
 
+void terminal_writedecimal(int n) {
+    if (n > 9) {
+        terminal_writedecimal(n / 10);
+        terminal_putchar(n % 10 + '0');
+    } else {
+        terminal_putchar(n + '0');
+    }
+}
+
+void terminal_writenum(int n, char base) {
+    if (base == 'd') {
+        terminal_writedecimal(n);
+    } else if (base == 'x') {
+
+    }
+}
+
 void terminal_writestring(const uint8_t *str) {
     terminal_write(str, strlen(str));
 }
