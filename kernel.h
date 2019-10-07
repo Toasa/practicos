@@ -15,6 +15,7 @@
 #include "getmmap.h"
 #include "libc_self_made/stdio.h"
 #include "libc_self_made/string.h"
+#include "libc_self_made/io.h"
 
 bool input_line(char *, char *);
 void prompt(void);

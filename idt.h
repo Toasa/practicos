@@ -12,6 +12,7 @@ extern void load_idtr(uint32_t);
 #endif
 
 extern as_keyboard_interrupt(void);
+extern as_software_interrupt(void);
 
 // IDTの中身
 typedef struct {

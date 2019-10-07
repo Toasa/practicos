@@ -2,7 +2,7 @@ all: create
 
 OBJ = terminal.o kernel.o keyboard.o inb_outb.o gdt.o \
       idt.o pic.o interrupt.o keymap.o stdio.o string.o \
-	  getmmap.o
+	  getmmap.o io.o sysdep.o syscall.o
 OBJAS = boot.o gdts.o idts.o interruptas.o
 
 CC = i686-elf-gcc
@@ -57,6 +57,15 @@ string.o: libc_self_made/string.c libc_self_made/string.h
 getmmap.o: getmmap.c getmmap.h
 	$(CC) -c $< -std=gnu99 $(CFLAGS) -Wextra
 
+io.o: libc_self_made/io.c libc_self_made/io.h syscallnum.h
+	$(CC) -c $< -std=gnu99 $(CFLAGS) -Wextra
+
+sysdep.o: libc_self_made/sysdep.c libc_self_made/sysdep.h syscallnum.h
+	$(CC) -c $< -std=gnu99 $(CFLAGS) -Wextra
+
+syscall.o: syscall.c libc_self_made/sysdep.h syscallnum.h
+	$(CC) -c $< -std=gnu99 $(CFLAGS) -Wextra
+
 create: $(OBJAS) $(OBJ)
 	$(CC) -T linker.ld -o os.bin $(CFLAGS) -nostdlib *.o -lgcc
 	grub2-file --is-x86-multiboot os.bin
@@ -65,3 +74,4 @@ create: $(OBJAS) $(OBJ)
 
 clean:
 	rm -f *.o *.gch os.bin os.iso
+	rm -f libc_self_made/*.gch

@@ -12,6 +12,7 @@ void idt_init(void) {
     }
 
     set_gate_desc(0x21, (uint32_t)as_keyboard_interrupt, 0x08, 0x8E);
+    set_gate_desc(0x80, (uint32_t)as_software_interrupt, 0x08, 0x8F);
 
     load_idtr((uint32_t)(&idt));
 

@@ -12,6 +12,8 @@ void kernel_main(multiboot_info_t *mbt, uint32_t magic) {
     pic_init();
     keyboard_init();
     // getmmap(mbt);
+
+    sm_write(1, "this is test", 13);
     
     prompt();
 }
